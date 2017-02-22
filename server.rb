@@ -5,12 +5,16 @@ loop {
   client = server.accept
 
   request = client.gets.split()
-  puts request[0]
   if request[0] == "GET"
 	path = request[1]
 	if File.exist?(path)
 		client.puts "HTTP/1.1 200 OK"
+		lines = File.readlines(path)
+		client.puts(lines)
+	else
+		client.puts "HTTP/1.0 404 Not Found"
 	end
+
   end
 
 
