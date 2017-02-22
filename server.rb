@@ -11,6 +11,7 @@ loop {
 		client.puts "HTTP/1.1 200 OK"
 		lines = File.readlines(path)
 		client.puts(lines)
+		client.puts(File.size(path))
 	else
 		client.puts "HTTP/1.0 404 Not Found"
 	end
